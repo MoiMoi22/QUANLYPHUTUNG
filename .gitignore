@@ -1,0 +1,29 @@
+# Maven target directory
+/target/
+
+# Logs
+*.log
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment config (bảo mật)
+/.env
+application.properties
+application.yml
+
+# Node (nếu dùng front-end kèm theo)
+node_modules/
+
+# Java
+*.class

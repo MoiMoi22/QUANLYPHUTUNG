@@ -1,0 +1,204 @@
+
+
+body {
+	margin-top: 20px;
+	background: #eee;
+}
+
+.container {
+	max-width: 100%;
+	overflow-x: auto; /* Đảm bảo bảng không bị tràn */
+}
+
+table {
+	width: 100%;
+	table-layout: fixed;
+	word-wrap: break-word;
+}
+
+th, td {
+	max-width: 200px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	vertical-align: middle;
+}
+
+.ibox {
+	margin-bottom: 25px;
+}
+
+.ibox-title {
+	background-color: #ffffff;
+	border-bottom: 1px solid #e7eaec;
+	padding: 14px 15px 7px;
+}
+
+.ibox-content {
+	background-color: #ffffff;
+	padding: 15px 20px;
+}
+
+.ibox-footer {
+	background: #ffffff;
+	padding: 10px 15px;
+	border-top: 1px solid #e7eaec;
+}
+
+th.stt, td.stt, th.ma, td.ma, th.xoa {
+	width: 45px; /* Chiều rộng nhỏ hơn cho STT */
+	text-align: center;
+}
+
+th.ma, td.ma {
+	width: 80px; /* Chiều rộng nhỏ hơn cho STT */
+	text-align: center;
+}
+
+/* Đặt chiều rộng lớn hơn cho cột Tên */
+th.ten, td.ten {
+	width: 150px; /* Chiều rộng lớn hơn cho Tên */
+	word-wrap: break-word; /* Tự động xuống dòng nếu dài */
+}
+
+.ibox-footer {
+	background-color: #f8f9fa;
+	padding: 10px;
+	border-top: 1px solid #e7eaec;
+}
+
+.summary-section {
+	display: flex;
+	flex-direction: column; /* Sắp xếp theo cột */
+	align-items: flex-end; /* Căn phải */
+}
+
+.discount-section {
+	margin-bottom: 10px;
+}
+
+.discount-section input {
+	width: 100px;
+	height: 30px;
+	text-align: center;
+	font-size: 14px;
+}
+
+.total-value-section h5, .total-value-section h4 {
+	margin: 0;
+	line-height: 1.2;
+}
+
+
+.row {
+	display: flex;
+	justify-content: space-between; /* Đảm bảo các cột cách đều nhau */
+	align-items: flex-start;
+	/* Căn trên cùng nếu nội dung hai bên có chiều cao khác nhau */
+}
+
+.col-md-6, .col-md-9 {
+	flex-shrink: 0; /* Giữ nguyên chiều rộng cột không bị co lại */
+}
+
+.col-md-9 {
+	flex-basis: 70%; /* Chiếm 70% chiều rộng */
+}
+
+.col-md-6 {
+	flex-basis: 30%; /* Chiếm 30% chiều rộng */
+}
+.summary-table {
+    width: 100%;
+    font-size: 14px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #e7eaec;
+}
+
+.summary-row:last-child {
+    border-bottom: none;
+}
+
+.summary-label {
+    font-weight: 600;
+    color: #333;
+}
+
+.summary-value {
+    font-weight: 600;
+    color: #555;
+}
+
+.total-row .summary-label {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.total-row .summary-value {
+    font-size: 18px;
+    font-weight: bold;
+    color: #1c84c6;
+}
+
+.ibox-content {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+#addr {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    font-size: 14px;
+    color: #495057;
+}
+
+#addr:hover {
+    border-color: #1c84c6;
+}
+
+#addr:focus {
+    border-color: #1c84c6;
+    box-shadow: 0 0 4px rgba(28, 132, 198, 0.6);
+    outline: none;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.form-control {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    font-size: 14px;
+    color: #495057;
+}
+
+.form-control:hover {
+    border-color: #1c84c6;
+}
+
+.form-control:focus {
+    border-color: #1c84c6;
+    box-shadow: 0 0 4px rgba(28, 132, 198, 0.6);
+    outline: none;
+}
+
+#street {
+    max-width: 100%;
+}

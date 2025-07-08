@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard</title>
+  <link rel="shortcut icon" type="image/png" href="dashboard/images/logos/favi.png" />
+  <link rel="stylesheet" href="dashboard/css/styles.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <style type="text/css">
+  /* Container */
+/* Container */
+/* Container */
+.date-picker-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Khoảng cách nhỏ hơn */
+    padding: 5px;
+    background-color: #f4f7fc;
+    border-radius: 8px;
+    width: 52%;
+}
+
+/* Label */
+.date-label {
+    font-size: 14px; /* Kích thước font nhỏ hơn */
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0;
+}
+
+/* Input */
+.date-input {
+    padding: 5px;
+    font-size: 12px; /* Kích thước font nhỏ hơn */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    background-color: #fff;
+}
+
+/* Tạo hiệu ứng khi focus vào input */
+.date-input:focus {
+    border-color: #4e73df;
+    box-shadow: 0 0 5px rgba(78, 115, 223, 0.5);
+}
+
+
+  </style>
+</head>
+
+
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar">
+      <!-- Sidebar scroll-->
+      <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between">
+          <a href="/dashboard" class="text-nowrap logo-img">
+            <img src="dashboard/images/logos/logo.png" width="180" alt="" />
+          </a>
+          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="ti ti-x fs-8"></i>
+          </div>
+        </div>
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+          <ul id="sidebarnav">
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">Quản lý</span>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/dashboard" aria-expanded="false">
+                <span>
+                  <i class="ti ti-layout-dashboard"></i>
+                </span>
+                <span class="hide-menu">Dashboard</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/user" aria-expanded="false">
+                <span>
+                  <i class="bi bi-person-bounding-box"></i>	
+                </span>
+                <span class="hide-menu">Người Dùng</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/product" aria-expanded="false">
+                <span>
+                  <i class="bi bi-car-front-fill"></i>
+                </span>
+                <span class="hide-menu">Phụ Tùng</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/order" aria-expanded="false">
+                <span>
+                  <i class="bi bi-receipt-cutoff"></i>
+                </span>
+                <span class="hide-menu">Hóa Đơn</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/transaction" aria-expanded="false">
+                <span>
+                  <i class="bi bi-cash-stack"></i>
+                </span>
+                <span class="hide-menu">Giao Dịch</span>
+              </a>
+            </li>
+<!--             <li class="sidebar-item">
+              <a class="sidebar-link" href="/statistic" aria-expanded="false">
+                <span>
+                  <i class="bi bi-graph-up-arrow"></i>
+                </span>
+                <span class="hide-menu">Thống Kê</span>
+              </a>
+            </li> -->
+
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">TÀI KHOẢN</span>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/logout" aria-expanded="false">
+                <span>
+                  <i class="ti ti-login"></i>
+                </span>
+                <span class="hide-menu">Đăng Xuất</span>
+              </a>
+            </li>
+          </ul>	
+        </nav>
+        <!-- End Sidebar navigation -->
+      </div>
+      <!-- End Sidebar scroll-->
+    </aside>
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      <!--  Header Start -->
+      <header class="app-header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <ul class="navbar-nav">
+            <li class="nav-item d-block d-xl-none">
+              <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+                <i class="ti ti-menu-2"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-icon-hover" href="javascript:void(0)">
+                <i class="ti ti-bell-ringing"></i>
+                <div class="notification bg-primary rounded-circle"></div>
+              </a>
+            </li>
+          </ul>
+          <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+            <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+              <li class="nav-item dropdown">
+                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  <img src="dashboard/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
+                </a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                  <div class="message-body">
+                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-user fs-6"></i>
+                      <p class="mb-0 fs-3">My Profile</p>
+                    </a>
+                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-mail fs-6"></i>
+                      <p class="mb-0 fs-3">My Account</p>
+                    </a>
+                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-list-check fs-6"></i>
+                      <p class="mb-0 fs-3">My Task</p>
+                    </a>
+                    <a href="./authentication-login.html" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <!--  Header End -->
+      <div class="container-fluid">
+        <!--  Row 1 -->
+        <div class="row">
+          <div class="col-lg-8 d-flex align-items-strech">
+            <div class="card w-100">
+              <div class="card-body">
+                <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
+                  <div class="mb-3 mb-sm-0">
+                    <h5 class="card-title fw-semibold">Sales Overview</h5>
+                  </div>
+                  
+					<div id="dateFields" class="date-picker-container">
+					    <label for="startDate" class="date-label">Start:</label>
+					    <input type="date" id="startDate" name="startDate" class="date-input">
+					  
+					    <label for="endDate" class="date-label">End:</label>
+					    <input type="date" id="endDate" name="endDate" class="date-input">
+					</div>
+
+                  <div>
+                    <select class="form-select" id="timeFilter">
+                      <option value="day">Ngày</option>
+                      <option value="month">Tháng</option>
+                      <option value="year">Năm</option>
+                    </select>
+                  </div>
+                </div>
+                <button id="submitBtn" class = "btn btn-primary">Thống kê</button>
+                <canvas id="chart2" width="400" height="200"></canvas>
+                
+                
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="row">
+              <div class="col-lg-12">
+                <!-- Yearly Breakup -->
+                <div class="card overflow-hidden">
+                  <div class="card-body p-4">
+                    <h5 class="card-title mb-9 fw-semibold">Yearly Breakup</h5>
+                    <div class="row align-items-center">
+                      <div class="col-8">
+                        <h4 class="fw-semibold mb-3">$36,358</h4>
+                        <div class="d-flex align-items-center mb-3">
+                          <span
+                            class="me-1 rounded-circle bg-light-success round-20 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-arrow-up-left text-success"></i>
+                          </span>
+                          <p class="text-dark me-1 fs-3 mb-0">+9%</p>
+                          <p class="fs-3 mb-0">last year</p>
+                        </div>
+                        <div class="d-flex align-items-center">
+                          <div class="me-4">
+                            <span class="round-8 bg-primary rounded-circle me-2 d-inline-block"></span>
+                            <span class="fs-2">2023</span>
+                          </div>
+                          <div>
+                            <span class="round-8 bg-light-primary rounded-circle me-2 d-inline-block"></span>
+                            <span class="fs-2">2023</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-4">
+                        <div class="d-flex justify-content-center">
+                          <div id="breakup"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <!-- Monthly Earnings -->
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row alig n-items-start">
+                      <div class="col-8">
+                        <h5 class="card-title mb-9 fw-semibold"> Monthly Earnings </h5>
+                        <h4 class="fw-semibold mb-3">$6,820</h4>
+                        <div class="d-flex align-items-center pb-1">
+                          <span
+                            class="me-2 rounded-circle bg-light-danger round-20 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-arrow-down-right text-danger"></i>
+                          </span>
+                          <p class="text-dark me-1 fs-3 mb-0">+9%</p>
+                          <p class="fs-3 mb-0">last year</p>
+                        </div>
+                      </div>
+                      <div class="col-4">
+                        <div class="d-flex justify-content-end">
+                          <div
+                            class="text-white bg-secondary rounded-circle p-6 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-currency-dollar fs-6"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="earning"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <script src="dashboard/libs/jquery/dist/jquery.min.js"></script>
+  <script src="dashboard/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="dashboard/js/sidebarmenu.js"></script>
+  <script src="dashboard/js/app.min.js"></script>
+  <script src="dashboard/libs/apexcharts/dist/apexcharts.min.js"></script>
+  <script src="dashboard/libs/simplebar/dist/simplebar.js"></script>
+  <script src="dashboard/js/dashboard.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+	  document.getElementById("submitBtn").addEventListener("click", function () {
+		    const startDate = document.getElementById("startDate").value;
+		    const endDate = document.getElementById("endDate").value;
+		    const timeFilter = document.getElementById("timeFilter").value;
+	
+		    if (!startDate || !endDate) {
+		        alert("Vui lòng chọn ngày bắt đầu và kết thúc!");
+		        return;
+		    }
+	
+		    const data = {
+		        startDate: startDate,
+		        endDate: endDate,
+		        timeFilter: timeFilter
+		    };
+	
+		    fetch('/api/chart-data', {
+		        method: 'POST',
+		        headers: {
+		            'Content-Type': 'application/json'
+		        },
+		        body: JSON.stringify(data)
+		    })
+		    .then(response => response.json())
+		    .then(result => {
+		        console.log("Data received:", result);
+		        // Chuyển đổi dữ liệu thành CSV và tải về
+			    // Thêm các thông tin chi tiết trước khi xuất CSV
+			    const companyName = "CUA HANG PHU TUNG OTO TLD";
+			    const reportTitle = "BAO CAO TAI CHINH";
+			    const reportDate = new Date().toLocaleDateString('vi-VN'); // Lấy ngày hiện tại ở định dạng Việt Nam
+			
+			    // Tạo dữ liệu CSV với các thông tin chi tiết
+			    const csvData = [
+			        [`TEN CUA HANG: ${companyName}`],
+			        [`TIEU DE: ${reportTitle}`],
+			        [`NGAY BAO CAO: ${reportDate}`],
+			        [''], // Dòng trống để phân tách tiêu đề và dữ liệu
+			        ['Receives', 'Spends', 'Profit', 'Time'],  // Tiêu đề cột
+			        ...result.map(item => [item.receives, item.spends, item.profit, item.currentDate])
+			    ];
+			
+			    // Xuất dữ liệu ra file CSV
+			    downloadCSV(csvData, 'financial_report.csv');
+	
+		        // Xử lý dữ liệu để vẽ biểu đồ
+		        const labels = result.map(item => new Date(item.currentDate).toLocaleDateString());
+		        const receives = result.map(item => item.receives);
+		        const spends = result.map(item => item.spends);
+		        const profits = result.map(item => item.profit);
+	
+		        drawChart({ labels, receives, spends, profits });
+		    })
+		    .catch(error => {
+		        console.error("Error:", error);
+		    });
+		});
+	  
+
+		// Hàm để tải file CSV với mã hóa UTF-8
+		function downloadCSV(data, fileName) {
+		    const csv = data.map(row => row.map(cell => `"${cell}"`).join(',')).join('\n'); // Đảm bảo các giá trị có dấu nháy kép
+		    const blob = new Blob([csv], { type: 'text/csv; charset=UTF-8' });  // Sử dụng UTF-8
+		    const link = document.createElement('a');
+		    link.href = URL.createObjectURL(blob);
+		    link.download = fileName;
+		    link.click();
+		}
+		var chartInstance;
+	    function drawChart(data) {
+	        // Nếu chartInstance đã tồn tại, hủy chart cũ đi
+	        if (chartInstance) {
+	            chartInstance.destroy();
+	        }
+	        const ctx = document.getElementById('chart2').getContext('2d');
+	        chartInstance = new Chart(ctx, {
+	            type: 'bar',  // Đổi từ 'line' sang 'bar' để sử dụng biểu đồ cột
+	            data: {
+	                labels: data.labels, // Ngày
+	                datasets: [
+	                    {
+	                        label: 'Receives',
+	                        data: data.receives,
+	                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+	                        borderColor: 'rgba(75, 192, 192, 1)',
+	                        borderWidth: 1
+	                    },
+	                    {
+	                        label: 'Spends',
+	                        data: data.spends,
+	                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+	                        borderColor: 'rgba(255, 99, 132, 1)',
+	                        borderWidth: 1
+	                    },
+	                    {
+	                        label: 'Profit',
+	                        data: data.profits,
+	                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+	                        borderColor: 'rgba(54, 162, 235, 1)',
+	                        borderWidth: 1
+	                    }
+	                ]
+	            },
+	            options: {
+	                responsive: true,
+	                scales: {
+	                    x: {
+	                        title: {
+	                            display: true,
+	                            text: 'Dates'
+	                        }
+	                    },
+	                    y: {
+	                        title: {
+	                            display: true,
+	                            text: 'Amount'
+	                        },
+	                        beginAtZero: true // Đảm bảo trục y bắt đầu từ 0
+	                    }
+	                }
+	            }
+	        });
+		}
+
+</script>
+
+<script>
+	document.addEventListener("DOMContentLoaded", () => {
+	    const startDateInput = document.getElementById("startDate");
+	    const endDateInput = document.getElementById("endDate");
+	
+	    // Lấy ngày hiện tại dưới dạng YYYY-MM-DD
+	    const today = new Date().toISOString().split("T")[0];
+	
+	    // Đặt thuộc tính max cho cả hai trường
+	    startDateInput.setAttribute("max", today);
+	    endDateInput.setAttribute("max", today);
+	
+	    // Ràng buộc ngày bắt đầu không được sau ngày kết thúc
+	    startDateInput.addEventListener("change", () => {
+	        const startDate = new Date(startDateInput.value);
+	        const endDate = new Date(endDateInput.value);
+	
+	        if (endDate && startDate > endDate) {
+	            alert("Start date cannot be after the end date.");
+	            startDateInput.value = ""; // Reset ngày bắt đầu
+	        }
+	    });
+	
+	    // Ràng buộc ngày kết thúc không được trước ngày bắt đầu
+	    endDateInput.addEventListener("change", () => {
+	        const startDate = new Date(startDateInput.value);
+	        const endDate = new Date(endDateInput.value);
+	
+	        if (startDate && endDate < startDate) {
+	            alert("End date cannot be before the start date.");
+	            endDateInput.value = ""; // Reset ngày kết thúc
+	        }
+	    });
+	});
+</script>
+
+
+</body>
+
+</html>

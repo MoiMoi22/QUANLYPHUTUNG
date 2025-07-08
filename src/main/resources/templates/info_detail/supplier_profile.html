@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--  This file has been downloaded from bootdey.com @bootdey on twitter -->
+    <!--  All snippets are MIT license http://bootdey.com/license -->
+    <title>Thông tin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+    	body {
+    margin: 0;
+    padding-top: 40px;
+    color: #2e323c;
+    background: #f5f6fa;
+    position: relative;
+    height: 100%;
+}
+.account-settings .user-profile {
+    margin: 0 0 1rem 0;
+    padding-bottom: 1rem;
+    text-align: center;
+}
+.account-settings .user-profile .user-avatar {
+    margin: 0 0 1rem 0;
+}
+.account-settings .user-profile .user-avatar img {
+    width: 90px;
+    height: 90px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+}
+.account-settings .user-profile h5.user-name {
+    margin: 0 0 0.5rem 0;
+}
+.account-settings .user-profile h6.user-email {
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #9fa8b9;
+}
+.account-settings .about {
+    margin: 2rem 0 0 0;
+    text-align: center;
+}
+.account-settings .about h5 {
+    margin: 0 0 15px 0;
+    color: #007ae1;
+}
+.account-settings .about p {
+    font-size: 0.825rem;
+}
+.form-control {
+    border: 1px solid #cfd1d8;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    font-size: .825rem;
+    background: #ffffff;
+    color: #2e323c;
+}
+
+.card {
+    background: #ffffff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: 0;
+    margin-bottom: 1rem;
+}
+
+
+    </style>
+        <script th:inline="javascript">
+        var message = [[${message}]];  // Tham số message từ controller
+        
+        if (message !== null) {
+            alert(message); // In giá trị nếu không phải null
+        } 
+    </script>
+</head>
+<body>
+<div class="container">
+<div class="row gutters">
+<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+<div class="card h-100">
+	<div class="card-body d-flex justify-content-center align-items-center flex-column">
+		<div class="account-settings">
+			<div class="user-profile">
+                <div class="user-avatar">
+                    <img id="imagePreview" th:src="@{${supplier.url} ?: 'https://cellphones.com.vn/sforum/wp-content/uploads/2023/10/avatar-trang-4.jpg'}" style="display: block; margin: 0 auto; width: 180px; height: 180px; border-radius: 100px; object-fit: cover;">
+                </div>
+				<h5 th:text="'ID Nhà cung cấp: ' + ${supplier.supplierId}">ID Nhà cung cấp</h5>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+<div class="card h-100">
+	<form id = "supplierForm" action="/supplier/add_supplier" method="post" enctype="multipart/form-data">
+		<div class="card-body">
+			<div class="row gutters">
+				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+					<h6 class="mb-2 text-primary">Thông Tin Nhà Cung Cấp</h6>
+				</div>
+				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+					<div class="form-group">
+						<label for="companyName">Tên nhà cung cấp</label>
+						<input type="text" name = "companyName" class="form-control" id="supname" th:value="${supplier.companyName}" placeholder="Nhập Tên nhà cung cấp">
+					</div>
+				</div>
+				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+					<div class="form-group">
+						<label for="contactName">Tên người liên hệ</label>
+						<input type="text" name = "contactName" class="form-control" id="contact_name" th:value="${supplier.contactName}" placeholder="Nhập Tên người liên hệ">
+					</div>
+				</div>
+				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+					<div class="form-group">
+						<label for="contactTitle">Chức danh người liên hệ</label>
+						<input type="text" name = "contactTitle" class="form-control" id="contact_title" th:value="${supplier.contactTitle}" placeholder="Nhập Chức danh người liên hệ">
+					</div>
+				</div>
+				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+					<div class="form-group">
+						<label for="phone">Số điện thoại</label>
+						<input type="text" name = "phone" class="form-control" id="phone" th:value="${supplier.phone}" placeholder="Nhập Số điện thoại">
+					</div>
+				</div>
+			</div>
+			<div class="row gutters">
+				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+					<div class="form-group">
+						<label for="email">Email</label>
+						<input type="email" name = "email" class="form-control" id="email" th:value="${supplier.email}" placeholder="Nhập Email">
+					</div>
+				</div>
+				
+				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+					<div class="form-group">
+						<label for="province">Tỉnh/Thành phố</label>
+						<div class="mb-3">   
+						    <select class="custom-select" id="province" name="province" required> </select>
+						</div>
+					</div>
+				</div>
+	
+			</div>
+			<div class="row gutters">
+				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+					<div class="form-group">
+						<label for="huyen">Quận/Huyện</label>
+						<div class="mb-3">						    
+						    <select class="custom-select" id="district" name="huyen" required></select>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+					<div class="form-group">
+						<label for="xa">Phường</label>
+						<div class="mb-3">   
+						    <select class="custom-select" id="ward" name="communeWardId" required> </select>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row gutters">
+				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+					<div class="form-group">
+						<label for="street">Số nhà, tên đường</label>
+						<input type="text" name = "addressName" class="form-control" id="street"  th:value="${addressName}" placeholder="Nhập Số nhà và tên đường">
+					</div>
+				</div>			
+				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+			        <div class="form-group">
+				        <label for="profileImage" class="form-label">Tải lên ảnh đại diện</label>
+								<div class="custom-file">
+									<input type="file" class="custom-file-input"
+										id="profileImage" name="profileImage" accept="image/*">
+									<label class="custom-file-label" for="profileImage">Chọn
+										ảnh...</label>
+								</div>
+			      	</div>
+			      </div>
+			</div>
+			<div class="form-group" style="display: none;">
+				<input type="hidden" id="url" name="url" th:value="${supplier.url}">
+				<input type="hidden" id="update" name="addressId" value="-1">
+			</div>        	
+			<div class="row gutters">
+				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+					<div class="text-right">
+						<a href = "/user" class="btn btn-secondary" id = "backButton">Hủy bỏ</a>
+						<button type="submit" id="submitButton" name="submit" class="btn btn-primary">Thêm</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+</div>
+</div>
+</div>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript">
+	function previewImage(event) {
+	    const imagePreview = document.getElementById('imagePreview');
+	    const file = event.target.files[0];
+	
+	    if (file) {
+	        const reader = new FileReader();
+	        reader.onload = function (e) {
+	            imagePreview.src = e.target.result;
+	            imagePreview.style.display = 'block';
+	        };
+	        reader.readAsDataURL(file);
+        } else {
+            imagePreview.src = 'https://cellphones.com.vn/sforum/wp-content/uploads/2023/10/avatar-trang-4.jpg';
+        }
+    }
+
+    document.getElementById('profileImage').addEventListener('change', previewImage);
+    
+</script>
+
+<script>
+    // Lấy mode từ server (truyền qua Thymeleaf)
+    const mode = "[[${mode}]]"; // Giá trị mặc định nếu không có `mode`
+    
+
+    // Xử lý giao diện dựa trên mode
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('supplierForm');
+        const inputs = form.querySelectorAll('input, select, textarea');
+        const submitButton = document.getElementById('submitButton');
+        const backButton = document.getElementById('backButton');
+
+        if (mode === 'view') {
+            // Set tất cả input, select, textarea thành readonly
+            inputs.forEach(input => input.setAttribute('readonly', true));
+            document.getElementById("ward").disabled = true;
+            document.getElementById("district").disabled = true;
+            document.getElementById("province").disabled = true;
+            document.getElementById("profileImage").disabled = true;
+
+            // Ẩn nút submit
+            submitButton.style.display = 'none';
+            backButton.textContent = 'Trở về';
+            
+        } else if (mode === 'edit') {
+            // Thay đổi action form khi chỉnh sửa
+            form.setAttribute('action', '/supplier/edit?supplierId=[[${supplier.supplierId}]]');
+            submitButton.textContent = 'Cập nhật';
+        } /* else if (mode === 'add') {
+            // Giữ nguyên action form mặc định
+            //submitButton.textContent = 'Thêm';
+        } */
+        
+/*        ////Xử lý tỉnh
+       // Lấy các phần tử
+        const provinceSelect = document.getElementById('province');
+        const districtSelect = document.getElementById('district');
+        const wardSelect = document.getElementById('ward');
+
+        // Hàm làm rỗng select
+        function clearSelect(selectElement) {
+            selectElement.innerHTML = '<option value="" disabled selected>Chọn</option>';
+        }
+
+        // Hàm gọi API và thêm dữ liệu vào select
+        function populateSelect(selectElement, data, valueKey, textKey) {
+            clearSelect(selectElement);
+            data.forEach(item => {
+        	    for (const [id, name] of Object.entries(item)) {
+        	        const option = document.createElement('option');
+        	        option.value = id;
+        	        option.textContent = name;
+        	        selectElement.appendChild(option);
+                }
+
+                
+            });
+        }
+
+        // Khi chọn tỉnh, tải huyện
+        provinceSelect.addEventListener('change', () => {
+            clearSelect(districtSelect);
+            clearSelect(wardSelect);
+
+            const provinceId = provinceSelect.value;
+            if (provinceId) {
+                fetch(`/api/districts?provinceId=${provinceId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        populateSelect(districtSelect, data, 'id', 'name');
+                    })
+                    .catch(error => console.error('Error loading districts:', error));
+            }
+        });
+
+        // Khi chọn huyện, tải xã
+        districtSelect.addEventListener('change', () => {
+            clearSelect(wardSelect);
+
+            const districtId = districtSelect.value;
+            if (districtId) {
+                fetch(`/api/wards?districtId=${districtId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        populateSelect(wardSelect, data, 'id', 'name');
+                    })
+                    .catch(error => console.error('Error loading wards:', error));
+            }
+        });
+
+        // Hàm khởi tạo, tải danh sách tỉnh
+        function initProvinces() {
+            fetch('/api/provinces')
+                .then(response => response.json())
+                .then(data => {
+                    populateSelect(provinceSelect, data, 'id', 'name');
+                    
+                })
+                .catch(error => console.error('Error loading provinces:', error));
+        }
+
+        // Khởi tạo dữ liệu ban đầu
+        initProvinces(); */
+        
+        	
+    });
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('supplierForm');
+        const inputs = form.querySelectorAll('input, select, textarea');
+        const submitButton = document.getElementById('submitButton');
+        const backButton = document.getElementById('backButton');
+        
+        const provinceSelect = document.getElementById('province');
+        const districtSelect = document.getElementById('district');
+        const wardSelect = document.getElementById('ward');
+
+        // Các giá trị từ controller
+        const provinceId = "[[${provinceId}]]"; // Gửi từ controller
+        const districtId = "[[${districtId}]]";
+        const wardId = "[[${wardId}]]";
+
+        function clearSelect(selectElement) {
+            selectElement.innerHTML = '<option value="" disabled selected>Chọn</option>';
+        }
+
+        function populateSelect(selectElement, data, selectedValue) {
+            clearSelect(selectElement);
+            data.forEach(item => {
+                for (const [id, name] of Object.entries(item)) {
+                    const option = document.createElement('option');
+                    option.value = id;
+                    option.textContent = name;
+                    if (selectedValue && id == selectedValue) {
+                        option.selected = true;
+                    }
+                    selectElement.appendChild(option);
+                }
+            });
+        }
+
+        provinceSelect.addEventListener('change', () => {
+            clearSelect(districtSelect);
+            clearSelect(wardSelect);
+
+            const selectedProvinceId = provinceSelect.value;
+            if (selectedProvinceId) {
+                fetch(`/api/districts?provinceId=${selectedProvinceId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        populateSelect(districtSelect, data, districtId);
+                    })
+                    .catch(error => console.error('Error loading districts:', error));
+            }
+        });
+
+        districtSelect.addEventListener('change', () => {
+            clearSelect(wardSelect);
+
+            const selectedDistrictId = districtSelect.value;
+            if (selectedDistrictId) {
+                fetch(`/api/wards?districtId=${selectedDistrictId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        populateSelect(wardSelect, data, wardId);
+                    })
+                    .catch(error => console.error('Error loading wards:', error));
+            }
+        });
+
+        function initProvinces() {
+            fetch('/api/provinces')
+                .then(response => response.json())
+                .then(data => {
+                    populateSelect(provinceSelect, data, provinceId);
+
+                    // Nếu `provinceId` được cung cấp, tự động tải huyện
+                    if (provinceId) {
+                        fetch(`/api/districts?provinceId=${provinceId}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                populateSelect(districtSelect, data, districtId);
+
+                                // Nếu `districtId` được cung cấp, tự động tải xã
+                                if (districtId) {
+                                    fetch(`/api/wards?districtId=${districtId}`)
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            populateSelect(wardSelect, data, wardId);
+                                        })
+                                        .catch(error => console.error('Error loading wards:', error));
+                                }
+                            })
+                            .catch(error => console.error('Error loading districts:', error));
+                    }
+                })
+                .catch(error => console.error('Error loading provinces:', error));
+        }
+
+        initProvinces();
+    });
+	
+    document.addEventListener('DOMContentLoaded', () => {
+        const updateInput = document.getElementById('update');
+        const streetInput = document.getElementById('street');
+        const wardSelect = document.getElementById('ward');
+
+        // Lắng nghe sự kiện thay đổi
+        streetInput.addEventListener('input', () => {
+            updateInput.value = "-2";
+            console.log('updated!');
+        });
+
+        wardSelect.addEventListener('change', () => {
+            updateInput.value = "-2";
+            console.log('updated!');
+        });
+    });
+
+
+</script>
+</body>
+</html>

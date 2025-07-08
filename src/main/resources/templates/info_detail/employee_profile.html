@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!--  This file has been downloaded from bootdey.com @bootdey on twitter -->
+<!--  All snippets are MIT license http://bootdey.com/license -->
+<title>Thông tin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<style type="text/css">
+body {
+	margin: 0;
+	padding-top: 40px;
+	color: #2e323c;
+	background: #f5f6fa;
+	position: relative;
+	height: 100%;
+}
+
+.account-settings .user-profile {
+	margin: 0 0 1rem 0;
+	padding-bottom: 1rem;
+	text-align: center;
+}
+
+.account-settings .user-profile .user-avatar {
+	margin: 0 0 1rem 0;
+}
+
+.account-settings .user-profile .user-avatar img {
+	width: 90px;
+	height: 90px;
+	-webkit-border-radius: 100px;
+	-moz-border-radius: 100px;
+	border-radius: 100px;
+}
+
+.account-settings .user-profile h5.user-name {
+	margin: 0 0 0.5rem 0;
+}
+
+.account-settings .user-profile h6.user-email {
+	margin: 0;
+	font-size: 0.8rem;
+	font-weight: 400;
+	color: #9fa8b9;
+}
+
+.account-settings .about {
+	margin: 2rem 0 0 0;
+	text-align: center;
+}
+
+.account-settings .about h5 {
+	margin: 0 0 15px 0;
+	color: #007ae1;
+}
+
+.account-settings .about p {
+	font-size: 0.825rem;
+}
+
+.form-control {
+	border: 1px solid #cfd1d8;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	font-size: .825rem;
+	background: #ffffff;
+	color: #2e323c;
+}
+
+.card {
+	background: #ffffff;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border: 0;
+	margin-bottom: 1rem;
+}
+</style>
+<script th:inline="javascript">
+        var message = [[${message}]];  // Tham số message từ controller
+        
+        if (message !== null) {
+            alert(message); // In giá trị nếu không phải null
+        } 
+        console.log('test');
+    </script>
+</head>
+<body>
+	<div class="container">
+		<div class="row gutters">
+			<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+				<div class="card h-100">
+					<div
+						class="card-body d-flex justify-content-center align-items-center flex-column">
+						<div class="account-settings">
+							<div class="user-profile">
+								<div class="user-avatar">
+									<img id="imagePreview"
+										src="https://cellphones.com.vn/sforum/wp-content/uploads/2023/10/avatar-trang-4.jpg"
+										style="display: block; margin: 0 auto; width: 180px; height: 180px; border-radius: 100px; object-fit: cover;">
+								</div>
+								<h5>ID Nhân viên</h5>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+				<div class="card h-100">
+					<form id="supplierForm" action="/employee/add_employee" method="post"
+						enctype="multipart/form-data">
+						<div class="card-body">
+							<div class="row gutters">
+								<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+									<h6 class="mb-2 text-primary">Thông Tin Nhân Viên</h6>
+								</div>
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="lastName">Họ và Tên đệm</label> <input type="text"
+											class="form-control" id="lastname"
+											th:value="${employee.lastName}" placeholder="Nhập Họ"
+											name="lastName" >
+									</div>
+								</div>
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="firstName">Tên</label> <input type="text"
+											class="form-control" id="firstname"
+											th:value="${employee.firstName}" placeholder="Nhập tên"
+											name="firstName">
+									</div>
+								</div>
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="email">Email</label> <input type="email"
+											class="form-control" id="email" th:value="${employee.email}"
+											placeholder="Nhập Email" name="email">
+									</div>
+								</div>
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="phoneNum">Số điện thoại</label> <input type="text"
+											class="form-control" id="phone"
+											th:value="${employee.phoneNum}"
+											placeholder="Nhập Số điện thoại" name="phoneNum">
+									</div>
+								</div>
+							</div>
+							<div class="row gutters">
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="dob">Ngày sinh</label> <input type="date"
+											class="form-control" id="dob" th:value="${employee.dob}"
+											name="dob">
+									</div>
+								</div>
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="role">Chức vụ</label>
+										<div class="mb-3">
+											<select class="custom-select" id="role" name="role" required>
+												<option value="MANAGER"
+													th:selected="${employee.role == 'MANAGER'}">Quản
+													lý</option>
+												<option value="ACCOUNTANT"
+													th:selected="${employee.role == 'ACCOUNTANT'}">Kế
+													toán</option>
+												<option value="SALES"
+													th:selected="${employee.role == 'SALES'}">Nhân
+													viên bán hàng</option>
+												<option value="WAREHOUSE_STAFF"
+													th:selected="${employee.role == 'WAREHOUSE_STAFF'}">Nhân
+													viên kho</option>
+											</select>
+										</div>
+									</div>
+								</div>
+
+							</div>
+
+							<div class="row gutters">
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="gender">Giới tính</label>
+										<div class="mb-3">
+											<select class="custom-select" id="gender" name="gender" required>
+												<option value="M" th:selected="${employee.gender == 'M'}">Nam</option>
+												<option value="F"
+													th:selected="${employee.gender == 'F'}">Nữ</option>
+												<option value="O"
+													th:selected="${employee.gender == 'O'}">Khác</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="profileImage" class="form-label">Tải lên
+											ảnh đại diện</label>
+										<div class="custom-file">
+											<input type="file" class="custom-file-input"
+												id="profileImage" name="profileImage" accept="image/*">
+											<label class="custom-file-label" for="profileImage">Chọn
+												ảnh...</label>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-group" style="display: none;">
+							    <input type="hidden" id="url" name="url" th:value="${employee.url}">
+							</div>  
+							<div class="row gutters">
+								<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+									<div class="text-right">
+										<a href="/user" class="btn btn-secondary" id="backButton">Hủy
+											bỏ</a>
+										<button id="submitButton" type="submit"
+											class="btn btn-primary">Thêm</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 	<script data-cfasync="false"
+		src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script> -->
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript">
+	function previewImage(event) {
+	    const imagePreview = document.getElementById('imagePreview');
+	    const file = event.target.files[0];
+	
+	    if (file) {
+	        const reader = new FileReader();
+	        reader.onload = function (e) {
+	            imagePreview.src = e.target.result;
+	            imagePreview.style.display = 'block';
+	        };
+	        reader.readAsDataURL(file);
+	    } else {
+	    	imagePreview.src = 'https://cellphones.com.vn/sforum/wp-content/uploads/2023/10/avatar-trang-4.jpg';
+	    }
+	}
+	
+	document.getElementById('profileImage').addEventListener('change', previewImage);
+    //Xử lý maxDate
+    // Lấy input date
+    const dateInput = document.getElementById('dob');
+    // Lấy ngày hiện tại
+    const today = new Date().toISOString().split('T')[0];
+    // Đặt giá trị max cho input
+    dateInput.max = today;
+</script>
+	<script>
+    // Lấy mode từ server (truyền qua Thymeleaf)
+    const mode = "[[${mode}]]"; // Giá trị mặc định nếu không có `mode`
+    console.log(mode)
+    
+
+    // Xử lý giao diện dựa trên mode
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('supplierForm');
+        const inputs = form.querySelectorAll('input, select, textarea');
+        const submitButton = document.getElementById('submitButton');
+        const backButton = document.getElementById('backButton');
+
+        if (mode === 'view') {
+            // Set tất cả input, select, textarea thành readonly
+            inputs.forEach(input => input.setAttribute('readonly', true));
+            document.getElementById("gender").disabled = true;
+            document.getElementById("profileImage").disabled = true;
+            document.getElementById("role").disabled = true;
+
+            // Ẩn nút submit
+            console.log(submitButton.textContent);
+            submitButton.style.display = 'none';
+            backButton.textContent = 'Trở về';
+            
+        } else if (mode === 'edit') {
+            // Thay đổi action form khi chỉnh sửa
+            form.setAttribute('action', '/employee/edit?employeeId=[[${employee.id}]]');
+            submitButton.textContent = 'Cập nhật';
+        } /* else if (mode === 'add') {
+            // Giữ nguyên action form mặc định
+            //submitButton.textContent = 'Thêm';
+        } */
+    });
+</script>
+
+</body>
+</html>

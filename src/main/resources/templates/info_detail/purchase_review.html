@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tạo hóa đơn</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">-->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="/order/order.css" rel="stylesheet">
+</head>
+    </style>
+    <script th:inline="javascript">
+        var message = [[${message}]];  // Tham số message từ controller
+        
+        if (message !== null) {
+            alert(message); // In giá trị nếu không phải null
+        } 
+    </script>
+<body>
+
+	<div class="container">
+		<div class="wrapper wrapper-content animated fadeInRight">
+			<div class="row">
+				<div class="col-md-9">
+					<div class="ibox">
+						<div class="ibox-title">
+							<h5>HÓA ĐƠN</h5>
+						</div>
+						<div class="ibox-content">
+							<!-- Dữ liệu sản phẩm (Item_Order) -->
+							<table class="table table-bordered table-hover dt-responsive text-center">
+							    <caption class="text-center">
+							        <strong>Danh sách Phụ tùng</strong>
+							    </caption>
+							    <thead>
+							        <tr>
+							            <th class="stt text-center">STT</th>
+							            <th class="ma text-center">Mã</th>
+							            <th class="ten text-center">Mã sản phẩm</th>
+							            <th class="text-center">Đơn giá</th>
+							            <th class="text-center">Số lượng</th>
+							            <th class="text-center">Thành tiền</th>
+							        </tr>
+							    </thead>
+								<tbody>
+								    <tr th:each="item, iterStat : ${items}">
+								        <td th:text="${iterStat.index + 1}">1</td>
+								        <td data-item-id th:attr="data-item-id=${item.itemId}" th:text="${item.itemId}">PT001</td>
+								        <td data-product-id th:attr="data-product-id=${item.productId}" th:text="${item.productId}">Lốp xe Michelin</td>
+								        <td data-price th:attr="data-price=${item.pricePerUnit}" th:text="${item.pricePerUnit}">1,200,000 đ</td>
+								        <td data-quantity th:attr="data-quantity=${item.quantity}" th:text="${item.quantity}">2</td>
+								        <td data-total="0">0 đ</td>
+								    </tr>
+								</tbody>
+
+															    
+							</table>
+
+
+						</div>
+
+						<div class="ibox-footer text-right"
+							style="display: flex; justify-content: flex-end;">
+							<div class="summary-section" style="text-align: right;">Cửa hàng phụ tùng ôtô TLD</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<!-- Dữ liệu hóa đơn (Order) -->
+					<div class="ibox">
+					    <div class="ibox-title">
+					        <h5>TÓM TẮT</h5>
+					    </div>
+					    <div class="ibox-content">
+					        <div class="summary-table">
+					            <div class="summary-row">
+					                <span class="summary-label">Số sản phẩm:</span>
+					                <span class="summary-value" id="product-count" >0</span>
+					            </div>
+					            <div class="summary-row">
+					                <span class="summary-label">Tổng số lượng:</span>
+					                <span class="summary-value" id="total-quantity" >0</span>
+					            </div>
+					            <div class="summary-row">
+					                <span class="summary-label">Giảm giá:</span>
+					                <span class="summary-value" id="total-discount" >0 đ</span>
+					            </div>
+					            <div class="summary-row">
+					                <span class="summary-label">Chiết khấu hóa đơn (%):</span>
+					                <span class="summary-value" id="invoice-discount" >0 %</span>
+					            </div>
+					            <div class="summary-row total-row">
+					                <span class="summary-label">Tổng giá trị:</span>
+					                <span class="summary-value text-primary" id="total-value" >0 đ</span>
+					            </div>
+					        </div>
+					    </div>
+					</div>
+
+
+					
+					<div class="ibox">
+					    <div class="ibox-title">
+					        <h5>NHÀ CUNG CẤP</h5>
+					    </div>
+					    <div class="ibox-content">
+					        <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
+					            <label style="margin: 0;">Số điện thoại:</label>
+					            <div class="form-control-plaintext" style="flex: 1;" th:text="${phone}">0901234567</div>
+					        </div>
+					
+					        <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
+					            <label style="font-size: 15px;">Công ty:</label>
+					            <div class="form-control-plaintext" style="flex: 1;" th:text="${name}">Nguyễn Văn A</div>
+					        </div>
+					
+					        <hr>
+					
+					        <div class="form-group">
+					            <label style="font-weight: bold;">Địa chỉ:</label>
+					            <div class="form-control-plaintext" th:text="${fullAddress}">123 Đường ABC, Quận 1, TP.HCM</div>
+					        </div>
+					
+					        <hr>
+					    </div>
+					</div>
+
+<form action="/purchase/pay_debt" method="POST" id="payment-form">
+    <div class="ibox">
+        <div class="ibox-content">
+            <p class="font-bold">THANH TOÁN</p>
+            <hr>
+            <!-- Input số tiền khách trả -->
+            <div class="form-group" id = "sotien">
+                <label for="amount-paid">Số tiền khách trả:</label>
+                <input type="number" id="amount-paid" name="money" class="form-control" placeholder="Nhập số tiền khách trả" required>
+            </div>
+
+            <!-- Input số tiền còn lại -->
+            <div class="form-group" >
+                <label for="remaining-amount">Số tiền còn lại:</label>
+                <input type="text" id="remaining-amount" name="remaining_amount" th:value="${remainingDebt}" class="form-control" readonly>
+            </div>
+            <hr>
+            
+            <!-- Thẻ hidden chứa orderId -->
+            <input type="hidden" id="order-id" name="orderId" th:value="${order.orderId}"> <!-- Thay '12345' bằng giá trị thực tế của orderId -->
+
+            <div>
+                <a href="/order" id="btnCancel" class="btn btn-secondary">Trở lại</a>
+                <button type="submit" id="create-invoice-btn" class="btn btn-success">Xác nhận thanh toán</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- Toast -->
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+      <div id="toastExample" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <img src="https://via.placeholder.com/20" class="rounded me-2" alt="...">
+          <strong class="me-auto">Bootstrap</strong>
+          <small>Just now</small>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+          Hello, this is a toast message!
+        </div>
+      </div>
+    </div>
+	
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<!-- <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/javascript.util/0.12.12/javascript.util.min.js"></script>
+	<script src="/order/order.js"></script>
+	<script type="module" src="/order/firebase-realtime.js"></script>
+	
+	<script>
+		
+		document.addEventListener("DOMContentLoaded", function () {
+		    const rows = document.querySelectorAll("tbody tr");
+		    rows.forEach(row => {
+		        // Lấy giá trị từ các thuộc tính data-*
+		        const quantity = parseInt(row.querySelector("[data-quantity]").getAttribute("data-quantity"));
+		        const pricePerUnit = parseFloat(row.querySelector("[data-price]").getAttribute("data-price"));
+		        const discount = parseFloat(row.querySelector("[data-discount]").getAttribute("data-discount"));
+	
+		        // Tính toán totalPrice
+		        const totalPrice = quantity * pricePerUnit * (1 - discount / 100);
+	
+		        // Hiển thị kết quả
+		        const totalCell = row.querySelector("[data-total]");
+		        totalCell.innerText = totalPrice.toLocaleString("vi-VN", { style: "currency", currency: "VND" });
+		        totalCell.setAttribute("data-total", totalPrice);
+		    });
+		});
+		document.addEventListener("DOMContentLoaded", function () {
+		    const rows = document.querySelectorAll("tbody tr"); // Chọn các dòng trong bảng
+
+		    let totalQuantity = 0;
+		    let totalDiscount = 0;
+		    let totalValue = 0;
+		    const invoiceDiscountPercent = parseFloat(document.getElementById("invoice-discount").innerText) || 0; // Lấy chiết khấu hóa đơn
+
+		    rows.forEach(row => {
+		        const quantity = parseInt(row.querySelector("[data-quantity]").getAttribute("data-quantity")) || 0;
+		        const pricePerUnit = parseFloat(row.querySelector("[data-price]").getAttribute("data-price")) || 0;
+		        const discount = parseFloat(row.querySelector("[data-discount]").getAttribute("data-discount")) || 0;
+
+		        // Tính giá trị dòng
+		        const totalPrice = quantity * pricePerUnit * (1 - discount / 100);
+
+		        // Cập nhật tổng
+		        totalQuantity += quantity;
+		        totalDiscount += quantity * pricePerUnit * (discount / 100);
+		        totalValue += totalPrice;
+		    });
+
+		    // Áp dụng chiết khấu hóa đơn
+		    const invoiceDiscountValue = totalValue * (invoiceDiscountPercent / 100);
+		    totalValue -= invoiceDiscountValue;
+
+		    // Cập nhật DOM
+		    document.getElementById("product-count").innerText = rows.length;
+		    document.getElementById("total-quantity").innerText = totalQuantity;
+		    document.getElementById("total-discount").innerText = totalDiscount.toLocaleString("vi-VN", { style: "currency", currency: "VND" });
+		    document.getElementById("total-value").innerText =  totalValue.toLocaleString("vi-VN", { style: "currency", currency: "VND" });
+		});
+		
+		
+        // Giả sử biến mode đã được xác định từ phía server hoặc được gán từ trước
+	    var mode = "[[${mode}]]";
+	     console.log(mode); // In ra console
+	
+	    
+	        // Kiểm tra nếu mode là "edit"
+	        if (mode === "view") {
+	            // Ẩn toàn bộ form
+	            document.getElementById('create-invoice-btn').style.display = 'none';
+	            // Hiển thị chỉ nút "Trở lại"
+	            document.getElementById('sotien').style.display = 'none';
+	        } else{						
+				document.addEventListener("DOMContentLoaded", function () {
+					
+				    const amountPaidInput = document.getElementById("amount-paid");
+				    const remainingAmountInput = document.getElementById("remaining-amount");
+				    const submitButton = document.getElementById("create-invoice-btn");
+				
+				    // Lấy giá trị tổng số tiền từ phần tử input remaining-amount
+				    let totalAmount = remainingAmountInput.value.replace(/\D/g, '') || 0; // Chuyển giá trị từ dạng tiền tệ thành số
+				
+				    // Hàm cập nhật số tiền còn lại
+				    function updateRemainingAmount() {
+				        const amountPaid = parseFloat(amountPaidInput.value) || 0; // Lấy giá trị nhập vào, mặc định 0 nếu không hợp lệ
+				        const remainingAmount = totalAmount - amountPaid; // Tính số tiền còn lại
+				
+				        // Cập nhật lại giá trị trong input remaining-amount
+				        if (remainingAmount >= 0) {
+				            remainingAmountInput.value = remainingAmount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+				            submitButton.disabled = false; // Kích hoạt nút submit khi hợp lệ
+				        } else {
+				            remainingAmountInput.value = 'Số tiền trả không hợp lệ'; // Thông báo nếu số tiền trả không hợp lệ
+				            submitButton.disabled = true; // Vô hiệu hóa nút submit khi không hợp lệ
+				        }
+				    }
+				
+				    // Lắng nghe sự kiện khi người dùng nhập số tiền trả
+				    amountPaidInput.addEventListener("input", updateRemainingAmount);
+				
+				    // Khởi tạo giá trị ban đầu
+				    updateRemainingAmount();
+				});
+
+
+			}
+	    
+	</script>
+</body>
+</html>

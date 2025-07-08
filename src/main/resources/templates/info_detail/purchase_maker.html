@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tạo hóa đơn</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">-->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="/order/order.css" rel="stylesheet">
+</head>
+<body>
+
+
+
+	<div class="container">
+		<div class="wrapper wrapper-content animated fadeInRight">
+			<div class="row">
+				<div class="col-md-9">
+					<div class="ibox">
+						<div class="ibox-title">
+							<h5>HÓA ĐƠN</h5>
+						</div>
+						<div class="ibox-content">
+							<table
+								class="table table-bordered table-hover dt-responsive text-center">
+								<caption class="text-center">
+									<strong>Danh sách Phụ tùng</strong>
+								</caption>
+								<thead>
+									<tr>
+										<th class="stt text-center">STT</th>
+										<th class="ma text-center">Mã</th>
+										<th class="ten text-center">Tên</th>
+										<th class="text-center">Đơn giá</th>
+										<th class="text-center">Số lượng</th>
+										<th class="text-center">Thành tiền</th>
+										<th class="xoa text-center"></th>
+									</tr>
+
+								</thead>
+								<tbody>
+								<tr><td colspan="7" class="text-center">Không có phụ tùng nào được thêm.</td></tr>
+								</tbody>
+							</table>
+
+
+						</div>
+
+						<div class="ibox-footer text-right"
+							style="display: flex; justify-content: flex-end;">
+							<div class="summary-section" style="text-align: right;">Cửa hàng phụ tùng ôtô TLD</div>
+						</div>
+
+						<!-- KHÁCH HÀNG SECTION -->
+						<!-- Ngăn cách bằng một đường kẻ ngang -->
+						<hr class="section-divider">
+						<div class="ibox">
+							<div class="ibox-title">
+								<h5>TÌM PHỤ TÙNG</h5>
+							</div>
+							<div class="ibox-content">
+								<!-- Input nhập số điện thoại -->
+								<div class="form-group"
+									style="display: flex; align-items: center; gap: 10px;">
+									<label for="tim_phu_tung" style="margin: 0;">Tên phụ tùng:</label> <input type="text" id="tim_phu_tung"
+										class="form-control" placeholder="Nhập tên phụ tùng"
+										style="flex: 1;">
+								</div>
+							</div>
+							
+							<div class="ibox-content" id = "render-area">
+
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="ibox">
+					    <div class="ibox-title">
+					        <h5>TÓM TẮT</h5>
+					    </div>
+					    <div class="ibox-content">
+					        <div class="summary-table">
+					            <div class="summary-row">
+					                <span class="summary-label">Số sản phẩm:</span>
+					                <span class="summary-value" id="product-count">0</span>
+					            </div>
+					            <div class="summary-row">
+					                <span class="summary-label">Tổng số lượng:</span>
+					                <span class="summary-value" id="total-quantity">0</span>
+					            </div>
+					            <div class="summary-row total-row">
+					                <span class="summary-label">Tổng giá trị:</span>
+					                <span class="summary-value text-primary" id="total-value">0 đ</span>
+					            </div>
+					        </div>
+					    </div>
+					</div>
+
+
+
+					<div class="ibox">
+						<div class="ibox-title">
+							<h5>NHÀ CUNG CẤP</h5>
+						</div>
+						<div class="ibox-content">
+							<!-- Input nhập số điện thoại -->
+							<div class="form-group"
+								style="display: flex; align-items: center; gap: 10px;">
+								<label for="supplier-phone" style="margin: 0;">Số điện
+									thoại:</label> <input type="text" id="supplier-phone"
+									class="form-control" placeholder="Số điện thoại"
+									style="flex: 1;">
+								<button  id="find-customer" class="btn btn-success">Tìm</button>
+							</div>
+
+							<!-- Text hiển thị tên người đại diện -->
+							<div class="form-group"
+								style="display: flex; align-items: center; gap: 10px;">
+								<label for="contact-name" style="font-size: 15px;">Người đại diện:</label> <input type="text" id="contact-name"
+									class="form-control" readonly
+									placeholder="Tên người đại diện	"
+									style="flex: 1;">
+							</div>
+							
+							<!-- Text hiển thị công ty -->
+							<div class="form-group"
+								style="display: flex; align-items: center; gap: 10px;">
+								<label for="company-name" style="font-size: 15px;">Tên công ty:</label> <input type="text" id="company-name"
+									class="form-control" readonly
+									placeholder="Tên công ty"
+									style="flex: 1;">
+							</div>
+							
+						</div>
+					</div>
+
+					<div class="ibox">
+						<div class="ibox-content">
+							<p class="font-bold">HOÀN THÀNH</p>
+							<hr>
+							<div>
+								<a href="#" id = "create-invoice-btn" class="btn btn-success">Hoàn thành hóa đơn</a>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<!-- <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/javascript.util/0.12.12/javascript.util.min.js"></script>
+	<script src="/purchase_order/order.js"></script>
+	<script type="module" src="order/firebase-realtime.js"></script>
+</body>
+</html>

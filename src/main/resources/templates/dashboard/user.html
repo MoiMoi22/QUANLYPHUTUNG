@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard</title>
+  <link rel="shortcut icon" type="image/png" href="dashboard/images/logos/favi.png" />
+  <link rel="stylesheet" href="dashboard/css/custom.css" />
+  <link rel="stylesheet" href="dashboard/css/styles.min.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<!-- CSS -->
+<style>
+  /* Modal backdrop */
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5); /* Dim background */
+  }
+
+  /* Modal content */
+  .modal-content {
+    background-color: #fff;
+    margin: 15% auto; /* Center the modal */
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Close button */
+	/* Nút đóng modal (X) */
+	.close {
+	    color: #aaa;
+	    font-size: 30px;
+	    font-weight: bold;
+	    position: absolute;
+	    top: 10px;
+	    right: 10px;
+	    cursor: pointer;
+	}
+	
+	.close:hover,
+	.close:focus {
+	    color: black;
+	    text-decoration: none;
+	    cursor: pointer;
+	}
+
+  /* Buttons */
+  .modal-actions button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .cancel-button {
+    background-color: #ccc;
+    color: #000;
+  }
+
+  .cancel-button:hover {
+    background-color: #bbb;
+  }
+
+  .delete-button {
+    background-color: #e74c3c;
+    color: #fff;
+  }
+
+  .delete-button:hover {
+    background-color: #c0392b;
+  }
+</style>
+</head>
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar">
+      <!-- Sidebar scroll-->
+      <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between">
+          <a href="/dashboard" class="text-nowrap logo-img">
+            <img src="dashboard/images/logos/logo.png" width="180" alt="" />
+          </a>
+          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="ti ti-x fs-8"></i>
+          </div>
+        </div>
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+          <ul id="sidebarnav">
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">Quản lý</span>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/dashboard" aria-expanded="false">
+                <span>
+                  <i class="ti ti-layout-dashboard"></i>
+                </span>
+                <span class="hide-menu">Dashboard</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/user" aria-expanded="false">
+                <span>
+                  <i class="bi bi-person-bounding-box"></i>	
+                </span>
+                <span class="hide-menu">Người Dùng</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/product" aria-expanded="false">
+                <span>
+                  <i class="bi bi-car-front-fill"></i>
+                </span>
+                <span class="hide-menu">Phụ Tùng</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/order" aria-expanded="false">
+                <span>
+                  <i class="bi bi-receipt-cutoff"></i>
+                </span>
+                <span class="hide-menu">Hóa Đơn</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/transaction" aria-expanded="false">
+                <span>
+                  <i class="bi bi-cash-stack"></i>
+                </span>
+                <span class="hide-menu">Giao Dịch</span>
+              </a>
+            </li>
+<!--             <li class="sidebar-item">
+              <a class="sidebar-link" href="/statistic" aria-expanded="false">
+                <span>
+                  <i class="bi bi-graph-up-arrow"></i>
+                </span>
+                <span class="hide-menu">Thống Kê</span>
+              </a>
+            </li> -->
+
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">TÀI KHOẢN</span>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/logout" aria-expanded="false">
+                <span>
+                  <i class="ti ti-login"></i>
+                </span>
+                <span class="hide-menu">Đăng Xuất</span>
+              </a>
+            </li>
+          </ul>	
+        </nav>
+        <!-- End Sidebar navigation -->
+      </div>
+      <!-- End Sidebar scroll-->
+    </aside>
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      <!--  Header Start -->
+      <header class="app-header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <ul class="navbar-nav">
+            <li class="nav-item d-block d-xl-none">
+              <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+                <i class="ti ti-menu-2"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-icon-hover" href="javascript:void(0)">
+                <i class="ti ti-bell-ringing"></i>
+                <div class="notification bg-primary rounded-circle"></div>
+              </a>
+            </li>
+          </ul>
+          <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+            <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+              <li class="nav-item dropdown">
+                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  <img src="dashboard/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
+                </a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                  <div class="message-body">
+                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-user fs-6"></i>
+                      <p class="mb-0 fs-3">My Profile</p>
+                    </a>
+                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-mail fs-6"></i>
+                      <p class="mb-0 fs-3">My Account</p>
+                    </a>
+                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-list-check fs-6"></i>
+                      <p class="mb-0 fs-3">My Task</p>
+                    </a>
+                    <a href="./authentication-login.html" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <!--  Header End -->
+      
+      <!-- Shopper -->
+      <div class="container-fluid">
+        <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css /> -->
+			<div class="container-fluid">
+			    <div class="row">
+			        <div class="col-md-12">
+			            <div class="panel">
+			                <div class="panel-heading">
+								<div class="row">
+								    <!-- Cột tiêu đề -->
+								    <div class="col col-sm-9 col-xs-12">
+								        <h4 class="title"><span>Khách Hàng</span></h4>
+								    </div>
+								
+								    <!-- Cột chứa nút và thanh tìm kiếm -->
+								    <div class="col-sm-3 col-xs-12">
+								        <div class="row">
+								            <!-- Cột Thanh Tìm kiếm (2 cột) -->
+								            <div class="col-sm-8 col-xs-12">
+								                <div class="search-box d-flex align-items-center">
+								                    <i class="fas fa-search mr-2"></i>
+								                    <input type="text" class="form-control search-input shopper" placeholder="Tìm kiếm" style="width: 100%;">
+								                </div>
+								            </div>
+								
+								            <!-- Cột Nút Create New (1 cột) -->
+								            <div class="col-sm-4 col-xs-12 text-right">
+								                <a href="/shopper/add_shopper" class="btn btn-sm btn-primary">
+								                    <i class="bi bi-plus-circle"></i> Thêm
+								                </a>
+								            </div>
+								        </div>
+								    </div>
+								</div>
+			                </div>
+			                <div class="panel-body table-responsive">
+			                    <table id="shopperTable" class="table table-hover table-bordered">
+				                <thead>
+				                    <tr>
+				                        <th>STT</th>
+				                        <th>Họ</th>
+				                        <th>Tên</th>
+				                        <th>SĐT</th>
+				                        <th>Email</th>
+				                        <th>Ngày sinh</th>
+				                        <th>Giới tính</th>
+				                        <th>Chức năng</th>
+				                    </tr>
+				                </thead>
+				                <tbody>
+				                    <tr th:each="customer : ${customers}">
+				                        <td th:text="${customer.id}">1</td>
+				                        <td th:text="${customer.firstName}">First Name</td>
+				                        <td th:text="${customer.lastName}">Last Name</td>
+				                        <td th:text="${customer.phoneNum}">123-456-7890</td>
+				                        <td th:text="${customer.email}">email@example.com</td>
+				                        <td th:text="${customer.dob}">1990-01-01</td>
+				                        <td th:text="${customer.gender}">Male</td>
+				                        <td>
+				                            <ul class="action-list list-inline" >
+				                                <li class="list-inline-item"><a th:href="@{shopper/view(customerId=${customer.id})}" class="view" data-tip="Xem"><i class="fas fa-eye"></i></a></li>
+				                                <li class="list-inline-item"><a th:href="@{shopper/edit(customerId=${customer.id})}" class="edit" data-tip="Sửa"><i class="fas fa-pencil-alt"></i></a></li>
+				                                <li class="list-inline-item"><a href="#deleteModal" class="delete" data-tip="Xóa" th:data-id ="shopper+' '+${customer.id}" ><i class="fas fa-trash"></i></a></li>
+				                            </ul>
+				                        </td>
+				                    </tr>
+				                </tbody>
+			                    </table>
+			                </div>
+			                <div class="panel-footer">
+			                    <div class="row">
+			                        <div class="col col-xs-6">Showing <b>5</b> out of <b>length</b> entries</div>
+			                        <div class="col-xs-6">
+										<ul class="pagination pull-right" data-table="shopper">
+										    <li class="prevPage"><a href="#"> &lt; </a></li>
+										    <li class="active" id="currentPage"><a>1</a></li>
+										    <li class="nextPage"><a href="#"> &gt; </a></li>
+										</ul>
+			                        </div>
+			                    </div>
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+      </div>
+      
+      <hr>
+      
+      <!-- Employee -->
+      <div class="container-fluid">
+        <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css /> -->
+			<div class="container">
+			    <div class="row">
+			        <div class="col-md-12">
+			            <div class="panel">
+			                <div class="panel-heading">
+								<div class="row">
+								    <!-- Cột tiêu đề -->
+								    <div class="col col-sm-9 col-xs-12">
+								        <h4 class="title"><span>Nhân Viên</span></h4>
+								    </div>
+								
+								    <!-- Cột chứa nút và thanh tìm kiếm -->
+								    <div class="col-sm-3 col-xs-12">
+								        <div class="row">
+								            <!-- Cột Thanh Tìm kiếm (2 cột) -->
+								            <div class="col-sm-8 col-xs-12">
+								                <div class="search-box d-flex align-items-center">
+								                    <i class="fas fa-search mr-2"></i>
+								                    <input type="text" class="form-control search-input employee" placeholder="Tìm kiếm" style="width: 100%;">
+								                </div>
+								            </div>
+								
+								            <!-- Cột Nút Create New (1 cột) -->
+								            <div class="col-sm-4 col-xs-12 text-right">
+								                <a href="/employee/add_employee" class="btn btn-sm btn-primary">
+								                    <i class="bi bi-plus-circle"></i> Thêm
+								                </a>
+								            </div>
+								        </div>
+								    </div>
+								</div>
+			                </div>
+			                <div class="panel-body table-responsive">
+			                    <table id="employeeTable" class="table table-hover table-bordered">
+					                <thead>
+					                    <tr>
+					                        <th>STT</th>
+					                        <th>Họ</th>
+					                        <th>Tên</th>
+					                        <th>SĐT</th>
+					                        <th>Email</th>
+					                        <th>Ngày sinh</th>
+					                        <th>Giới tính</th>
+					                        <th>Chức vụ</th>
+					                        <th>Chức năng</th>
+					                    </tr>
+					                </thead>
+					                <tbody>
+					                    <tr th:each="employee : ${employees}">
+					                        <td th:text="${employee.id}">1</td>
+					                        <td th:text="${employee.lastName}">Last Name</td>
+					                        <td th:text="${employee.firstName}">First Name</td>					                      
+					                        <td th:text="${employee.phoneNum}">123-456-7890</td>
+					                        <td th:text="${employee.email}">email@example.com</td>
+					                        <td th:text="${employee.dob}">1990-01-01</td>
+					                        <td th:text="${employee.gender}">Male</td>
+					                        <td th:text="${employee.role}">Manager</td>
+					                        <td>
+					                            <ul class="action-list list-inline" >
+					                                <li class="list-inline-item"><a th:href="@{employee/view(employeeId=${employee.id})}" class="view" data-tip="View"><i class="fas fa-eye"></i></a></li>
+					                                <li class="list-inline-item"><a th:href="@{employee/edit(employeeId=${employee.id})}" class="edit" data-tip="Edit"><i class="fas fa-pencil-alt"></i></a></li>
+					                                <li class="list-inline-item"><a href="#deleteModal" class="delete" data-tip="Xóa" th:data-id ="employee+${employee.id}" ><i class="fas fa-trash"></i></a></li>
+					                            </ul>
+					                        </td>
+					                    </tr>
+					                </tbody>
+			                    </table>
+			                </div>
+			                <div class="panel-footer">
+			                    <div class="row">
+			                        <div class="col col-xs-6">Showing <b>5</b> out of <b>25</b> entries</div>
+			                        <div class="col-xs-6">
+										<ul class="pagination pull-right" data-table="employee">
+										    <li class="prevPage"><a href="#"> &lt; </a></li>
+										    <li class="active" id="currentPage"><a>1</a></li>
+										    <li class="nextPage"><a href="#"> &gt; </a></li>
+										</ul>
+			                        </div>
+			                    </div>
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+      </div>
+      
+      <hr>
+    
+      <!-- Nhà cung cấp -->
+      <div class="container-fluid">
+        <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css /> -->
+			<div class="container">
+			    <div class="row">
+			        <div class="col-md-12">
+			            <div class="panel">
+			                <div class="panel-heading">
+								<div class="row">
+								    <!-- Cột tiêu đề -->
+								    <div class="col col-sm-9 col-xs-12">
+								        <h4 class="title"><span>Nhà Cung Cấp</span></h4>
+								    </div>
+								
+								    <!-- Cột chứa nút và thanh tìm kiếm -->
+								    <div class="col-sm-3 col-xs-12">
+								        <div class="row">
+								            <!-- Cột Thanh Tìm kiếm (2 cột) -->
+								            <div class="col-sm-8 col-xs-12">
+								                <div class="search-box d-flex align-items-center">
+								                    <i class="fas fa-search mr-2"></i>
+								                    <input type="text" class="form-control search-input supplier" placeholder="Tìm kiếm" style="width: 100%;">
+								                </div>
+								            </div>
+								
+								            <!-- Cột Nút Create New (1 cột) -->
+								            <div class="col-sm-4 col-xs-12 text-right">
+								                <a href="/supplier/add_supplier" class="btn btn-sm btn-primary">
+								                    <i class="bi bi-plus-circle"></i> Thêm
+								                </a>
+								            </div>
+								        </div>
+								    </div>
+								</div>
+			                </div>
+			                <div class="panel-body table-responsive">
+			                    <table id="supplierTable" class="table table-hover table-bordered">
+					                <thead>
+					                    <tr>
+					                        <th>STT</th>
+					                        <th>Tên CTY</th>
+					                        <th>Liên hệ</th>
+					                        <th>Chức vụ</th>
+					                        <th>SĐT</th>
+					                        <th>Email</th>
+					                        <th>Chức năng</th>
+					                    </tr>
+					                </thead>
+					                <tbody>
+					                    <tr th:each="supplier : ${suppliers}">
+					                        <td th:text="${supplier.supplierId}">1</td>
+					                        <td th:text="${supplier.companyName}">Company Name</td>
+					                        <td th:text="${supplier.contactName}">Contact Name</td>
+					                        <td th:text="${supplier.contactTitle}">Contact Title</td>
+					                        <td th:text="${supplier.phone}">123-456-7890</td>
+					                        <td th:text="${supplier.email}">email@example.com</td>
+					                        <td>
+					                            <ul class="action-list list-inline">
+					                                <li class="list-inline-item"><a th:href="@{supplier/view(supplierId=${supplier.supplierId})}" class="view" data-tip="View"><i class="fas fa-eye"></i></a></li>
+					                                <li class="list-inline-item"><a th:href="@{supplier/edit(supplierId=${supplier.supplierId})}" class="edit" data-tip="Edit"><i class="fas fa-pencil-alt"></i></a></li>
+					                                <li class="list-inline-item"><a href="#deleteModal" class="delete" data-tip="Xóa" th:data-id ="supplier+${supplier.supplierId}" ><i class="fas fa-trash"></i></a></li>
+					                            </ul>
+					                        </td>
+					                    </tr>
+					                </tbody>
+			                    </table>
+			                </div>
+			                <div class="panel-footer">
+			                    <div class="row">
+			                        <div class="col col-xs-6">Showing <b>5</b> out of <b>25</b> entries</div>
+			                        <div class="col-xs-6">
+										<ul class="pagination pull-right" data-table="supplier">
+										    <li class="prevPage"><a href=""> &lt; </a></li>
+										    <li class="active currentPage" id="currentPage" ><a href="#">1</a></li>
+										    <li class="nextPage"><a href=""> &gt; </a></li>
+										</ul>
+			                        </div>
+			                    </div>
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+      </div>
+    
+
+		<!-- Modal -->
+		<div id="deleteModal" class="modal">
+		    <div class="modal-content">
+		        <span class="close" id="closeModal">&times;</span>
+		        <h2>Xác nhận xóa</h2>
+		        <p>Bạn có chắc chắn muốn xóa người dùng này không?</p>
+		        <div class="modal-actions">
+		            <button id="cancelBtn" class="cancel-button">Hủy</button>
+		            <button id="confirmDelete" class="delete-button">Xóa</button>
+		        </div>
+		    </div>
+		</div>
+		
+		<!-- Modal Thông báo-->
+		<div id="succesModal" class="modal">
+		    <div class="modal-content">
+				<!-- Nội dung cập nhật bơi js -->
+		    </div>
+		</div>
+		
+		
+    </div>
+
+  </div>
+
+  <!-- Custom -->
+  <script src="dashboard/user.js"></script>
+  
+  <script src="dashboard/libs/jquery/dist/jquery.min.js"></script>
+  <script src="dashboard/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="dashboard/js/sidebarmenu.js"></script>
+  <script src="dashboard/js/app.min.js"></script>
+  <!-- <script src="dashboard/libs/apexcharts/dist/apexcharts.min.js"></script> -->
+  <script src="dashboard/libs/simplebar/dist/simplebar.js"></script>
+  <!-- <script src="dashboard/js/dashboard.js"></script>-->
+</body>
+
+</html>

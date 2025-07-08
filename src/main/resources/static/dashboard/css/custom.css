@@ -1,0 +1,223 @@
+
+/* Pagination styles */
+.pagination {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pagination li {
+    margin: 0 5px;
+}
+
+.pagination li a {
+    text-decoration: none;
+    color: gray;
+    font-size: 16px;
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+/* Active state */
+.pagination li.active a {
+    background-color: #00aaff; /* Bright blue background */
+    color: white;
+    font-weight: bold;
+}
+
+/* Hover effect */
+.pagination li a:hover {
+    background-color: #e9ecef; /* Light gray on hover */
+    color: black;
+}
+/* Style for the search box container */
+.search-box {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    max-width: 300px; /* Đặt độ rộng tối đa cho hộp */
+    border: 1px solid #ddd; /* Viền nhạt */
+    border-radius: 25px; /* Bo góc tròn */
+    padding: 5px 15px;
+    background-color: #fff; /* Nền trắng */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng nhẹ */
+}
+
+/* Search icon */
+.search-box i {
+    color: #aaa;
+    font-size: 16px;
+    margin-right: 10px; /* Khoảng cách giữa icon và input */
+    font-size: 18px;
+}
+
+/* Input field */
+.search-box input {
+    border: none;
+    outline: none;
+    flex: 1; /* Để input tự động chiếm hết không gian còn lại */
+    font-size: 14px;
+    color: #555; /* Màu chữ */
+}
+
+.search-box input::placeholder {
+    color: #aaa; /* Màu chữ placeholder */
+}
+
+/* Add hover effect */
+.search-box:hover {
+    border-color: #bbb; /* Đổi màu viền khi hover */
+}
+
+.search-box:focus-within {
+    border-color: #007bff; /* Đổi màu viền khi focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Đổ bóng màu xanh */
+}
+
+.demo{
+    background-color: #f5f5f5;
+    font-family: 'Poppins', sans-serif;
+}
+.panel{
+    padding: 20px;
+    border-radius: 0;
+    border: none;
+}
+.panel .panel-heading{
+    padding: 0 0 20px 0;
+    border-radius: 0;
+    margin: 0;
+}
+.panel .panel-heading .title{
+    color: #566787;
+    font-size: 22px;
+    font-weight: 400;
+    text-transform: capitalize;
+    margin: 6px 0;
+}
+.panel .panel-heading .title span{ font-weight: 700; }
+.panel .panel-heading .search-box{ position: relative; }
+.panel .panel-heading .search-box i{
+    color: #a0a5b1;
+    font-size: 13px;
+    position: absolute;
+    top: 11px;
+    left: 15px;
+}
+.panel .panel-heading .search-box .form-control{
+    padding: 0 0 0 40px;
+    border-color: #ddd;
+    border-radius: 20px;
+}
+.panel .panel-heading .search-box .form-control:focus{
+    border-color: #3FBAE4;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
+}
+.panel .panel-body{ padding: 0; }
+.panel .panel-body .table{ margin: 0; }
+.panel .table-responsive .table-bordered{ border: 1px solid #ddd; }
+.panel .panel-body .table thead tr th{
+    font-size: 17px;
+    font-weight: 600;
+    padding: 12px;
+}
+.panel .panel-body .table tbody tr td{
+    color: #555;
+    font-size: 16px;
+    padding: 15px 12px;
+    vertical-align: middle;
+}
+.panel .panel-body .table tbody .action-list{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.panel .panel-body .table tbody .action-list li{
+    display: inline-block;
+    margin: 0 5px;
+}
+.panel .panel-body .table tbody .action-list li a{
+    color: #03A9F4;
+    font-size: 16px;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease 0s;
+}
+.panel .panel-body .table tbody .action-list li a:hover{ text-shadow: 0 0 2px rgba(0,0,0,0.3); }
+.panel .panel-body .table tbody .action-list li a.edit{ color: #FFC107; }
+.panel .panel-body .table tbody .action-list li a.delete{ color: #E34724; }
+.panel .panel-body .table tbody .action-list li a:before,
+.panel .panel-body .table tbody .action-list li a:after{
+    content: attr(data-tip);
+    color: #fff;
+    background-color: #111;
+    font-size: 12px;
+    padding: 5px 7px;
+    border-radius: 4px;
+    text-transform: capitalize;
+    display: none;
+    transform: translateX(-50%);
+    position: absolute;
+    left: 50%;
+    top: -32px;
+    transition: all 0.3s ease 0s;
+}
+.panel .panel-body .table tbody .action-list li a:after{
+    content: '';
+    height: 15px;
+    width: 15px;
+    padding: 0;
+    border-radius: 0;
+    transform: translateX(-50%) rotate(45deg);
+    top: -18px;
+    z-index: -1;
+}
+.panel .panel-body .table tbody .action-list li a:hover:before,
+.panel .panel-body .table tbody .action-list li a:hover:after{
+    display: block;
+}
+.panel .panel-footer{
+    color: #999;
+    background-color: transparent;
+    padding: 15px 0 0;
+    border: none;
+}
+.panel .panel-footer .col{ line-height: 35px; }
+.pagination{ margin: 0; }
+.pagination li a{
+    color: #999;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    line-height: 32px;
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    padding: 0;
+    margin: 0 2px;
+    border: none;
+}
+.pagination li:first-child a,
+.pagination li:last-child a{
+    border-radius: 30px;
+}
+.pagination li a:hover{
+    color: #999;
+    background: #e9ecef;
+}
+.pagination li a:focus,
+.pagination li.active a{
+    color: #fff;
+    background-color: #03a9f4;
+}
+@media only screen and (max-width:767px){
+    .panel .panel-heading .title{
+        text-align: center;
+        margin: 0 0 10px;
+    }
+}
