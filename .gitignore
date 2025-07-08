@@ -18,10 +18,8 @@
 Thumbs.db
 
 # Environment config (bảo mật)
-/.env
-application.properties
-application.yml
 
+src/main/resources/application.properties
 # Node (nếu dùng front-end kèm theo)
 node_modules/
 
